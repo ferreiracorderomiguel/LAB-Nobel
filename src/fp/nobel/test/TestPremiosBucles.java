@@ -1,7 +1,7 @@
 package fp.nobel.test;
 /**
  * @author Daniel Mateos
- * @author José A. Troyano
+ * @author María Moral Fijo
  * 
  * @since 2019-03-10
  */

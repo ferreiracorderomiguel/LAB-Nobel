@@ -9,7 +9,7 @@ import java.util.List;
 import fp.utiles.Checkers;
 
 public class FactoriaNobel {
-	private static Implementacion implementacion;
+	private Implementacion implementacion = Implementacion.STREAM;
 	
 	public Premio parsearPremio(String linea) {
 		String[] lineas = linea.split(",");
@@ -32,9 +32,19 @@ public class FactoriaNobel {
 			List<String> lineas = Files.readAllLines(Paths.get(rutaFichero));
 			lineas.remove(0);
 			
+			if(this.implementacion == Implementacion.STREAM) {
+				
+			} else {
+				
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void setImplementacion(Implementacion nuevaImp) {
+		this.implementacion = nuevaImp;
 	}
 }

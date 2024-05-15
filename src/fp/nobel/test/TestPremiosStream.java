@@ -37,7 +37,7 @@ public static void main(String[] args) {
 		System.out.println("\nTEST de obtenerPremiosDeGenero");
 		try {
 			System.out.println("  GENERO: " + genero);
-			System.out.println("    PREMIOS: " + premios.obtenerPremiosDeGenero(genero));
+			System.out.println("    PREMIOS: " + premios.obtenerPremiosDeGenero(genero.toString()));
 		} catch(Exception e) {
 			System.out.println("Excepción capturada:\n   " + e);	
 		}

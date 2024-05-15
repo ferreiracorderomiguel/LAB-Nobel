@@ -8,7 +8,7 @@ public interface Premios {
 	void añadirPremio(Premio premio);
     Set<Premio> obtenerPremiosDeGenero(String genero);
     long calcularNumeroPremiadosMasJovenesDe(int edad);
-    Map<String, Integer> calcularNumeroPremiosPorGenero();
+    Map<String, Long> calcularNumeroPremiosPorGenero();
     Map<Integer, List<Premio>> calcularPremiosPorEdad();
     Map<String, Double> calcularMediaEdadPorCategoria();
 }

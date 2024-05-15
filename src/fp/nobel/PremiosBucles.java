@@ -49,13 +49,13 @@ public class PremiosBucles implements Premios {
 	}
 
 	@Override
-	public Map<String, Integer> calcularNumeroPremiosPorGenero() {
-		Map<String, Integer> res = new HashMap<String, Integer>();
+	public Map<String, Long> calcularNumeroPremiosPorGenero() {
+		Map<String, Long> res = new HashMap<String, Long>();
 		
 		for (Premio p: premios) {
 			String genero = p.genero().name();
 			if(!res.containsKey(genero)) {
-				res.put(genero, 0);
+				res.put(genero, (long) 0);
 			}
 			res.put(genero, res.get(genero) + 1);
 		}

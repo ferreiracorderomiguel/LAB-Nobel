@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PremiosStream implements Premios {
@@ -20,38 +21,40 @@ public class PremiosStream implements Premios {
 
 	@Override
 	public void añadirPremio(Premio premio) {
-		// TODO Auto-generated method stub
-
+		this.premios.add(premio);
 	}
 
 	@Override
 	public Set<Premio> obtenerPremiosDeGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+		return premios.stream()
+				.filter(x -> x.genero().equals(genero))
+				.collect(Collectors.toSet());
 	}
 
 	@Override
 	public long calcularNumeroPremiadosMasJovenesDe(int edad) {
-		// TODO Auto-generated method stub
-		return 0;
+		return premios.stream()
+				.filter(x -> x.edadPremiado() < edad)
+				.count();
 	}
 
 	@Override
-	public Map<String, Integer> calcularNumeroPremiosPorGenero() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Long> calcularNumeroPremiosPorGenero() {
+	    return premios.stream()
+	            .collect(Collectors.groupingBy(p -> p.genero().name(), Collectors.counting()));
 	}
 
 	@Override
 	public Map<Integer, List<Premio>> calcularPremiosPorEdad() {
-		// TODO Auto-generated method stub
-		return null;
+		return premios.stream()
+				.collect(Collectors.groupingBy(Premio::edadPremiado));
 	}
 
 	@Override
 	public Map<String, Double> calcularMediaEdadPorCategoria() {
-		// TODO Auto-generated method stub
-		return null;
+		return premios.stream()
+	            .collect(Collectors.groupingBy(Premio::categoria,
+	                    Collectors.averagingInt(Premio::edadPremiado)));
 	}
 
 }

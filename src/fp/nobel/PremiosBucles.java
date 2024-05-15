@@ -1,5 +1,6 @@
 package fp.nobel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -64,14 +65,42 @@ public class PremiosBucles implements Premios {
 
 	@Override
 	public Map<Integer, List<Premio>> calcularPremiosPorEdad() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Integer, List<Premio>> res = new HashMap<Integer, List<Premio>>();
+		
+		for (Premio p: premios) {
+			Integer edad = p.edadPremiado();
+			if(!res.containsKey(edad)) {
+				res.put(edad, new ArrayList<Premio>());
+			}
+			res.get(edad).add(p);
+		}
+		
+		return res;
 	}
 
 	@Override
 	public Map<String, Double> calcularMediaEdadPorCategoria() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, List<Integer>> edadesPorCategoria = new HashMap<String, List<Integer>>();
+		for (Premio p: premios) {
+			String cat = p.categoria();
+			
+			if (!edadesPorCategoria.containsKey(cat)) {
+				edadesPorCategoria.put(cat, new ArrayList<Integer>());
+			}
+			edadesPorCategoria.get(cat).add(p.edadPremiado());
+		}
+		
+		Map<String, Double> res = new HashMap<String, Double>();
+		for (Map.Entry<String, List<Integer>> entry : edadesPorCategoria.entrySet()) {
+	        String categoria = entry.getKey();
+	        List<Integer> edades = entry.getValue();
+	        double mediaEdad = 0.0;
+	        for (int edad : edades) {
+	            mediaEdad += edad;
+	        }
+	        mediaEdad /= edades.size();
+	        res.put(categoria, mediaEdad);
+	    }
+		return res;
 	}
-
 }

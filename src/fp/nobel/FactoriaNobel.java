@@ -26,22 +26,30 @@ public class FactoriaNobel {
 	}
 	
 	public Premios leerPremios(String rutaFichero) {
-		List<Premios> res = new ArrayList<Premios>();
+		PremiosStream premiosStream = new PremiosStream();
+		PremiosBucles premiosBucles = new PremiosBucles();
 		
 		try {
 			List<String> lineas = Files.readAllLines(Paths.get(rutaFichero));
 			lineas.remove(0);
 			
-			if(this.implementacion == Implementacion.STREAM) {
-				
-			} else {
-				
-			}
+			for (String linea: lineas) {
+				if(this.implementacion == Implementacion.STREAM) {
+					premiosStream.añadirPremio(parsearPremio(linea));
+				} else {
+					premiosBucles.añadirPremio(parsearPremio(linea));
+				}
+			}	
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+
+		if(this.implementacion == Implementacion.STREAM) {
+	        return premiosStream;
+	    } else {
+	        return premiosBucles;
+	    }
 	}
 	
 	public void setImplementacion(Implementacion nuevaImp) {
